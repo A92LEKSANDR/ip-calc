@@ -144,7 +144,7 @@ int main()
     vector<int> mask_ip;
     int oktet_ip_0 = 0, oktet_ip_1 = 0, oktet_ip_2 = 0, oktet_ip_3 = 0;
     //*****************************************************************//
-    system("color 30");
+    system("color F0");
     /*---------------------Start----------------------*/
 ip:
     cout << "Press enter ip (for example 192 168 0 1 [0.0.0.0 - 254.254.254.254]): \n";

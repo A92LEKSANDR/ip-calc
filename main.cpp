@@ -7,7 +7,7 @@ int bit(int oktet)
 {
     int result = 0;
     int bit[8][2] =
-    {{1, 128},
+    { {1, 128},
      {2, 192},
      {3, 224},
      {4, 240},
@@ -135,7 +135,6 @@ int max_host(int a)
     return result;
 }
 
-
 int main()
 {
     //*******************************variable**************************//
@@ -145,34 +144,54 @@ int main()
     int oktet_ip_0 = 0, oktet_ip_1 = 0, oktet_ip_2 = 0, oktet_ip_3 = 0;
     //*****************************************************************//
     system("color F0");
-    /*---------------------Start----------------------*/
+    /***********************Start***************************************/
+
 ip:
-    cout << "Press enter ip (for example 192 168 0 1 [0.0.0.0 - 254.254.254.254]): \n";
-    cin >> oktet_ip_0 >> oktet_ip_1 >> oktet_ip_2 >> oktet_ip_3;
-
-    if (oktet_ip_0 >= 0 && oktet_ip_0 <= 255 && oktet_ip_1 >= 0 && oktet_ip_1 <= 255 && oktet_ip_2 >= 0 && oktet_ip_2 <= 255 && oktet_ip_3 >= 0 && oktet_ip_3 <= 255)
+    while (true)
     {
-    mask_restart:
+        cout << "Press enter ip (for example 192 168 0 1 [0.0.0.0 - 254.254.254.254]): \n";
+        cin >> oktet_ip_0 >> oktet_ip_1 >> oktet_ip_2 >> oktet_ip_3;
 
-        cout << "Press enter mask bit: (0, 1 , 2 ... 25): ";
-        cin >> bit_mask;
-
-        if (bit_mask >= 0 && bit_mask <= 32)
+        if (cin.fail())
         {
-            goto Source_Data;
+            cin.clear();
+            cin.ignore();
         }
         else
         {
-            cout << "Error input!!!\n";
-            goto mask_restart;
+            if (oktet_ip_0 >= 0 && oktet_ip_0 <= 255 && oktet_ip_1 >= 0 && oktet_ip_1 <= 255 && oktet_ip_2 >= 0 && oktet_ip_2 <= 255 && oktet_ip_3 >= 0 && oktet_ip_3 <= 255)
+            {
+                break;
+            }
+            else
+            {
+                goto ip;
+            }
         }
     }
-    else
+mask_restart:
+    while (true)
     {
-        cout << "Error input!!!\n";
-        goto ip;
+        cout << "Press enter mask bit: (0, 1 , 2 ... 32): ";
+        cin >> bit_mask;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            cout << "enter error, try again\n";
+        }
+        else
+        {
+            if ((bit_mask >= 0 && bit_mask <= 32))
+            {
+                goto Source_Data;
+            }
+            else
+            {
+                goto mask_restart;
+            }
+        }
     }
-
     /*---------------------Cout IP----------------------------*/
 Source_Data:
 
@@ -225,7 +244,6 @@ Source_Data:
     cout << "] \n";
 
     //------------min/max------------------------//
-
     vector<int> minip = ip;
     vector<int> maxip = ip;
 
@@ -253,7 +271,6 @@ Source_Data:
     cout << "]\n";
 
     //---------------Class mask----------------//
-
     cout << "subnet class [";
     if (bit_mask >= 0 && bit_mask <= 8)
     {

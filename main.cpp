@@ -156,6 +156,7 @@ int main()
         {
             cin.clear();
             cin.ignore();
+            cout << "enter error, try again\n";
         }
         else
         {

@@ -7,7 +7,7 @@ int bit(int oktet)
 {
     int result = 0;
     int bit[8][2] =
-    { {1, 128},
+    {{1, 128},
      {2, 192},
      {3, 224},
      {4, 240},
@@ -146,7 +146,7 @@ int main()
     system("color F0");
     /***********************Start***************************************/
 
-ip:
+    ip://ticket goto
     while (true)
     {
         cout << "Press enter ip (for example 192 168 0 1 [0.0.0.0 - 254.254.254.254]): \n";
@@ -169,7 +169,7 @@ ip:
             }
         }
     }
-mask_restart:
+    mask_restart://ticket goto
     while (true)
     {
         cout << "Press enter mask bit: (0, 1 , 2 ... 32): ";

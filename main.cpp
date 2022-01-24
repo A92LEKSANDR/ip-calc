@@ -139,6 +139,10 @@ char CLASS_MASK(int bit_mask)
     {
         clas = 'C';
     }
+    else
+    {
+        return -1;
+    }
     return clas;
 }
 
@@ -195,6 +199,7 @@ int max_host(int a)
 int main()
 {
     //*******************************variable**************************//
+    const int host = 254;
     int bit_mask = 0;
     vector<int> ip;
     vector<int> mask_ip;

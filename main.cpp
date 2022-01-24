@@ -31,6 +31,18 @@ int bit(int oktet)
     return result;
 }
 
+//---------------2^N-------------------------------//
+unsigned long long two(unsigned long long a)
+{
+    for (int i = 0; i < 32 - a; i++)
+    {
+        a *= 2;
+    }
+    a = a - 1;
+
+    return a;
+}
+
 //___________________bit-mask_______________________//
 vector<int> Mask(int N)
 {
@@ -98,6 +110,19 @@ vector<int> Mask(int N)
 
     return ip;
 }
+
+//------------Wildcard------------------------------//
+/*vector<int> wildcard(vector<int> wild, int bit)
+{
+    int oktet0 = 0, oktet1 = 0, oktet3 = 0, oktet4 = 0;
+
+    if (bit%32)
+    {
+        
+    }
+
+    return wild;
+}*/
 
 //----------------------IP___________________________//
 vector<int> fund_of_ip(int a, int b, int c, int e)

@@ -124,6 +124,24 @@ vector<int> Mask(int N)
     return wild;
 }*/
 
+char CLASS_MASK(int bit_mask)
+{
+    char clas = '0';
+    if (bit_mask >= 0 && bit_mask <= 8)
+    {
+        clas = 'A';
+    }
+    else if (bit_mask >= 9 && bit_mask <= 16)
+    {
+        clas = 'B';
+    }
+    else if (bit_mask >= 17 && bit_mask <= 32)
+    {
+        clas = 'C';
+    }
+    return clas;
+}
+
 //----------------------IP___________________________//
 vector<int> fund_of_ip(int a, int b, int c, int e)
 {
@@ -134,6 +152,20 @@ vector<int> fund_of_ip(int a, int b, int c, int e)
     enter_ip.push_back(e);
 
     return enter_ip;
+}
+
+vector<int> MIN_IP(vector<int> min)
+{
+
+
+    return min;
+}
+
+vector<int> MAX_IP(vector<int> max)
+{
+
+
+    return max;
 }
 
 //-----------number-of-host----------------------//
@@ -298,18 +330,7 @@ Source_Data:
 
     //---------------Class mask----------------//
     cout << "subnet class [";
-    if (bit_mask >= 0 && bit_mask <= 8)
-    {
-        cout << "A";
-    }
-    else if (bit_mask >= 9 && bit_mask <= 16)
-    {
-        cout << "B";
-    }
-    else if (bit_mask >= 17 && bit_mask <= 32)
-    {
-        cout << "C";
-    }
+    cout << CLASS_MASK(bit_mask);
     cout << "]\n";
 
     //--------maximum number of hosts--------//

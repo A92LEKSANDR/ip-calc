@@ -174,10 +174,9 @@ vector<int> fund_of_ip(int a, int b, int c, int e)
     return enter_ip;
 }
 
-vector<int> MIN_IP(vector<int> min)
+vector<int> MIN_IP(vector<int>& min)
 {
-
-
+    min[3] = 1;
     return min;
 }
 
@@ -289,6 +288,13 @@ Source_Data:
         }
     }
     cout << "] \n";
+    cout << "binary [";
+    vector<int> ok0 = decTobit(oktet_ip_0);
+    for (int i = 0; i < ok0.size(); i++)
+    {
+        cout << i;
+    }
+    cout << "]\n";
     //---------------cout<<-mask---------------------------//
     mask_ip = Mask(bit_mask);
     cout << "network mask = [";

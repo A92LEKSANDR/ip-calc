@@ -2,6 +2,22 @@
 #include <vector>
 using namespace std;
 
+//---------------DEC-to-Bit------------------------//
+vector<int> decTobit(unsigned int a)
+{
+    vector<int> result;
+    int bit = 0;
+    int count = result.size() - 1;
+    while (a > 0)
+    {
+        bit = a % 2;
+        a /= 2;
+        result[count] = bit;
+        count--;
+    }
+    return result;
+}
+
 //___________________fund-oktate___________________//
 int bit(int oktet)
 {

@@ -5,7 +5,7 @@ using namespace std;
 //---------------DEC-to-Bit------------------------//
 vector<int> decTobit(unsigned int a)
 {
-    vector<int> result;
+    vector<int> result(8);
     int bit = 0;
     int count = result.size() - 1;
     while (a > 0)
@@ -223,7 +223,7 @@ int main()
     system("color F0");
     /***********************Start***************************************/
 
-    ip://ticket goto
+ip://ticket goto
     while (true)
     {
         cout << "Press enter ip (for example 192 168 0 1 [0.0.0.0 - 254.254.254.254]): \n";
@@ -247,7 +247,7 @@ int main()
             }
         }
     }
-    mask_restart://ticket goto
+mask_restart://ticket goto
     while (true)
     {
         cout << "Press enter mask bit: (0, 1 , 2 ... 32): ";
@@ -276,7 +276,7 @@ Source_Data:
     ip = fund_of_ip(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
 
     cout << "\tSource Data: \n";
-    cout << "********************************\n";
+    cout << "*************************************************\n";
     cout << "ip adres = [";
 
     for (int i = 0; i < ip.size(); i++)
@@ -288,13 +288,33 @@ Source_Data:
         }
     }
     cout << "] \n";
-    cout << "binary [";
+
+    cout << "ip_binary [";
     vector<int> ok0 = decTobit(oktet_ip_0);
     for (int i = 0; i < ok0.size(); i++)
     {
-        cout << i;
+        cout << ok0[i];
+    }
+    cout << '.';
+    vector<int> ok1 = decTobit(oktet_ip_1);
+    for (int i = 0; i < ok1.size(); i++)
+    {
+        cout << ok1[i];
+    }
+    cout << '.';
+    vector<int> ok2 = decTobit(oktet_ip_2);
+    for (int i = 0; i < ok1.size(); i++)
+    {
+        cout << ok1[i];
+    }
+    cout << '.';
+    vector<int> ok3 = decTobit(oktet_ip_3);
+    for (int i = 0; i < ok3.size(); i++)
+    {
+        cout << ok3[i];
     }
     cout << "]\n";
+
     //---------------cout<<-mask---------------------------//
     mask_ip = Mask(bit_mask);
     cout << "network mask = [";
@@ -309,8 +329,33 @@ Source_Data:
     }
     cout << "]\n";
     cout << "bit mask = " << bit_mask << "\n";
-    cout << "********************************\n";
+    cout << "mask_binary [";
+    vector<int> m0 = decTobit(mask_ip[0]);
+    vector<int> m1 = decTobit(mask_ip[1]);
+    vector<int> m2 = decTobit(mask_ip[2]);
+    vector<int> m3 = decTobit(mask_ip[3]);
 
+    for (int i = 0; i < m0.size(); i++)
+    {
+        cout << m0[i];
+    }
+    cout << ".";
+    for (int i = 0; i < m1.size(); i++)
+    {
+        cout << m1[i];
+    }
+    cout << ".";
+    for (int i = 0; i < m2.size(); i++)
+    {
+        cout << m2[i];
+    }
+    cout << ".";
+    for (int i = 0; i < m3.size(); i++)
+    {
+        cout << m3[i];
+    }
+    cout << "]";
+    cout << "\n*************************************************\n";
 
     //---------------network----------------------//
     vector<int> network_ip = ip;
@@ -366,6 +411,7 @@ Source_Data:
     cout << number_of_hosts;
     cout << "]\n";
     //--------------------------------------//
+    cout << "*************************************************\n";
 
     goto ip;//restart
     return 0;

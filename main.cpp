@@ -127,6 +127,17 @@ vector<int> Mask(int N)
     return ip;
 }
 
+vector<int> NETWORK(vector<int> a, vector<int> b)
+{
+    vector<int> result(4);
+    
+    for (int i = 0; i < a.size(); i++)
+    {
+        result[i] = a[i] & b[i];
+    }
+    return result;
+}
+
 //------------Wildcard------------------------------//
 /*vector<int> wildcard(vector<int> wild, int bit)
 {
@@ -191,7 +202,11 @@ vector<int> MAX_IP(vector<int> max)
 int max_host(int a)
 {
     int result = 1;
-    if (a > 0 && a < 31)
+    if (a == 0)
+    {
+        result = 0;
+    }
+    else if (a > 0 && a < 31)
     {
         for (int i = 0; i < 32 - a; i++)
         {
@@ -223,7 +238,7 @@ int main()
     system("color F0");
     /***********************Start***************************************/
 
-ip://ticket goto
+    ip://ticket goto
     while (true)
     {
         cout << "Press enter ip (for example 192 168 0 1 [0.0.0.0 - 254.254.254.254]): \n";
@@ -328,7 +343,7 @@ Source_Data:
         }
     }
     cout << "]\n";
-    cout << "bit mask = " << bit_mask << "\n";
+ 
     cout << "mask_binary [";
     vector<int> m0 = decTobit(mask_ip[0]);
     vector<int> m1 = decTobit(mask_ip[1]);
@@ -354,14 +369,13 @@ Source_Data:
     {
         cout << m3[i];
     }
-    cout << "]";
-    cout << "\n*************************************************\n";
+    cout << "]\n";
+    cout << "bit mask = " << bit_mask << "\n";
+    cout << "*************************************************\n";
 
     //---------------network----------------------//
-    vector<int> network_ip = ip;
-    network_ip[2] = 0;
-    network_ip[3] = 0;
-
+    vector<int> network_ip = NETWORK(ip, mask_ip);
+   
     cout << "network [";
     for (int i = 0; i < network_ip.size(); i++)
     {

@@ -139,17 +139,15 @@ vector<int> NETWORK(vector<int> a, vector<int> b)
 }
 
 //------------Wildcard------------------------------//
-/*vector<int> wildcard(vector<int> wild, int bit)
+vector<int> WILDCARD(vector<int>& wild)
 {
-    int oktet0 = 0, oktet1 = 0, oktet3 = 0, oktet4 = 0;
-
-    if (bit%32)
+    vector<int> result(4);
+    for (int i = 0; i < result.size(); i++)
     {
-        
+        result[i] =wild[i] ^ 255;
     }
-
-    return wild;
-}*/
+    return result;
+}
 
 char CLASS_MASK(int bit_mask)
 {
@@ -373,6 +371,19 @@ Source_Data:
     cout << "bit mask = " << bit_mask << "\n";
     cout << "*************************************************\n";
 
+    //----------------WILDCARD--------------------//
+    cout << "wildcard [";
+    vector<int> wildcard = WILDCARD(mask_ip);
+
+    for (int i = 0; i < wildcard.size(); i++)
+    {
+        cout << wildcard[i];
+        if (i != wildcard.size() - 1)
+        {
+            cout << '.';
+        }
+    }
+    cout << "]\n";
     //---------------network----------------------//
     vector<int> network_ip = NETWORK(ip, mask_ip);
    

@@ -369,6 +369,13 @@ Source_Data:
     }
     cout << "]\n";
     cout << "bit mask = " << bit_mask << "\n";
+    cout << "binary bit mask [";
+    vector<int> bit_bi = decTobit(bit_mask);
+    for (int i = 0; i < bit_bi.size(); i++)
+    {
+        cout << bit_bi[i];
+    }
+    cout << "]\n";
     cout << "*************************************************\n";
 
     //----------------WILDCARD--------------------//

@@ -7,7 +7,7 @@ vector<int> decTobit(unsigned int a)
 {
     vector<int> result(8);
     int bit = 0;
-    int count = result.size() - 1;
+    size_t count = result.size() - 1;
     while (a > 0)
     {
         bit = a % 2;
@@ -30,7 +30,7 @@ int bit(int oktet)
      {5, 248},
      {6, 252},
      {7, 254},
-     {8, 255}, };
+     {8, 255},};
 
     if (oktet >= 0 && oktet <= 8)
     {
@@ -45,18 +45,6 @@ int bit(int oktet)
     }
 
     return result;
-}
-
-//---------------2^N-------------------------------//
-unsigned long long two(unsigned long long a)
-{
-    for (int i = 0; i < 32 - a; i++)
-    {
-        a *= 2;
-    }
-    a = a - 1;
-
-    return a;
 }
 
 //___________________bit-mask_______________________//
@@ -189,9 +177,11 @@ vector<int> MIN_IP(vector<int>& min)
     return min;
 }
 
-vector<int> MAX_IP(vector<int> max)
+vector<int> MAX_IP(int bit_mask)
 {
-
+    vector<int> max(4);
+    vector<int> m = Mask(bit_mask);
+    
 
     return max;
 }
@@ -233,7 +223,6 @@ int main()
     vector<int> mask_ip;
     int oktet_ip_0 = 0, oktet_ip_1 = 0, oktet_ip_2 = 0, oktet_ip_3 = 0;
     //*****************************************************************//
-    system("color F0");
     /***********************Start***************************************/
 
     ip://ticket goto
@@ -263,7 +252,7 @@ int main()
 mask_restart://ticket goto
     while (true)
     {
-        cout << "Press enter mask bit: (0, 1 , 2 ... 32): ";
+        cout << "Press enter mask bit: (0, 1 ... 32): ";
         cin >> bit_mask;
         if (cin.fail())
         {
@@ -290,7 +279,7 @@ Source_Data:
 
     cout << "\tSource Data: \n";
     cout << "*************************************************\n";
-    cout << "ip adres = [";
+    cout << "ip addres = [";
 
     for (int i = 0; i < ip.size(); i++)
     {
@@ -368,14 +357,8 @@ Source_Data:
         cout << m3[i];
     }
     cout << "]\n";
-    cout << "bit mask = " << bit_mask << "\n";
-    cout << "binary bit mask [";
-    vector<int> bit_bi = decTobit(bit_mask);
-    for (int i = 0; i < bit_bi.size(); i++)
-    {
-        cout << bit_bi[i];
-    }
-    cout << "]\n";
+
+    cout << "bit mask [" << bit_mask <<  "]\n";
     cout << "*************************************************\n";
 
     //----------------WILDCARD--------------------//

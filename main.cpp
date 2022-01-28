@@ -171,17 +171,80 @@ vector<int> fund_of_ip(int a, int b, int c, int e)
     return enter_ip;
 }
 
-vector<int> MIN_IP(vector<int>& min)
+vector<int> MIN_IP(vector<int> ip, int bit)
 {
-    min[3] = 1;
+    vector<int> min(4);
+    vector<int> a = Mask(bit);
+    if (bit > 0 && bit <= 8)
+    {
+        min[0] = ip[0];
+        min[1] = 0;
+        min[2] = 0;
+        min[3] = 1;
+
+    }
+    else if (bit >= 9 && bit <= 16)
+    {
+        min[0] = ip[0];
+        min[1] = ip[1];
+        min[2] = 0;
+        min[3] = 1;
+    }
+    else if (bit >= 17 && bit <= 24)
+    {
+        min[0] = ip[0];
+        min[1] = ip[1];
+        min[2] = ip[2];
+        min[3] = 1;
+    }
+    else if (bit >= 25 && bit <= 32)
+    {
+        min[0] = ip[0];
+        min[1] = ip[1];
+        min[2] = ip[2];
+        min[3] = ip[3] + 1;
+    }
+
     return min;
 }
 
-vector<int> MAX_IP(int bit_mask)
+vector<int> MAX_IP(vector<int> ip, int bit)
 {
     vector<int> max(4);
-    vector<int> m = Mask(bit_mask);
-    
+    vector<int> a = Mask(bit);
+    if (bit > 0 && bit < 8)
+    {
+        max[0] = 255 - a[0] + ip[0];
+        max[1] = 255;
+        max[2] = 255;
+        max[3] = 254;
+
+    }
+    else if (bit >= 8 && bit < 16)
+    {
+        max[0] = ip[0];
+        max[1] = 255 - a[1] + ip[1];
+        max[2] = 255;
+        max[3] = 254;
+    }
+    else if (bit >= 16 && bit < 24)
+    {
+        max[0] = ip[0];
+        max[1] = ip[1];
+        max[2] = 254 - a[2] + ip[2];
+        max[3] = 254;
+    }
+    else if (bit >= 24 && bit <= 32)
+    {
+        max[0] = ip[0];
+        max[1] = ip[1];
+        max[2] = ip[2];
+        max[3] = ip[3];
+        while (max[3] != 254)
+        {
+            max[3]++;
+        }
+    }
 
     return max;
 }
@@ -389,11 +452,10 @@ Source_Data:
     cout << "] \n";
 
     //------------min/max------------------------//
-    vector<int> minip = ip;
-    vector<int> maxip = ip;
+    vector<int> minip = MIN_IP(ip,bit_mask);
+    vector<int> maxip = MAX_IP(ip,bit_mask);
 
     cout << "min ip [";
-    minip[3] = 0;
     for (int i = 0; i < minip.size(); i++)
     {
         cout << minip[i];
@@ -403,7 +465,7 @@ Source_Data:
         }
     }
     cout << "]\n";
-    maxip[3] = 255;
+  
     cout << "max ip [";
     for (int i = 0; i < maxip.size(); i++)
     {

@@ -80,7 +80,7 @@ vector<int> mask(int N)
     return { 0, 0, 0, 0 };
 }
 
-vector<int> NETWORK(vector<int> a, vector<int> b)
+vector<int> network(vector<int> a, vector<int> b)
 {
     vector<int> result(4);
     
@@ -91,8 +91,8 @@ vector<int> NETWORK(vector<int> a, vector<int> b)
     return result;
 }
 
-//------------Wildcard------------------------------//
-vector<int> WILDCARD(vector<int>& wild)
+//------------wildcard------------------------------//
+vector<int> wildcard(vector<int>& wild)
 {
     vector<int> result(4);
     for (int i = 0; i < result.size(); i++)
@@ -102,7 +102,7 @@ vector<int> WILDCARD(vector<int>& wild)
     return result;
 }
 
-char CLASS_mask(int bit_mask)
+char class_mask(int bit_mask)
 {
     char clas = '0';
     if (bit_mask >= 0 && bit_mask <= 8)
@@ -127,13 +127,7 @@ char CLASS_mask(int bit_mask)
 //----------------------IP___________________________//
 vector<int> fund_of_ip(int a, int b, int c, int e)
 {
-    vector<int> enter_ip;
-    enter_ip.push_back(a);
-    enter_ip.push_back(b);
-    enter_ip.push_back(c);
-    enter_ip.push_back(e);
-
-    return enter_ip;
+    return { a, b, c, e };
 }
 
 vector<int> MIN_IP(vector<int> ip, int bit)
@@ -245,12 +239,10 @@ int max_host(int a)
 int main()
 {
     //*******************************variable**************************//
-    const int host = 254;
     int bit_mask = 0;
     vector<int> ip;
     vector<int> mask_ip;
     int oktet_ip_0 = 0, oktet_ip_1 = 0, oktet_ip_2 = 0, oktet_ip_3 = 0;
-    //*****************************************************************//
     /***********************Start***************************************/
 
     ip://ticket goto
@@ -277,7 +269,7 @@ int main()
             }
         }
     }
-mask_restart://ticket goto
+    mask_restart://ticket goto
     while (true)
     {
         cout << "Press enter mask bit: (0, 1 ... 32): ";
@@ -300,9 +292,10 @@ mask_restart://ticket goto
             }
         }
     }
+    
+    
     /*---------------------Cout IP----------------------------*/
-Source_Data:
-
+    Source_Data:
     ip = fund_of_ip(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
 
     cout << "\tSource Data: \n";
@@ -389,9 +382,9 @@ Source_Data:
     cout << "bit mask [" << bit_mask <<  "]\n";
     cout << "*************************************************\n";
 
-    //----------------WILDCARD--------------------//
+    //----------------wildcard--------------------//
     cout << "wildcard [";
-    vector<int> wildcard = WILDCARD(mask_ip);
+    vector<int> wildcard = wildcard(mask_ip);
 
     for (int i = 0; i < wildcard.size(); i++)
     {
@@ -403,7 +396,7 @@ Source_Data:
     }
     cout << "]\n";
     //---------------network----------------------//
-    vector<int> network_ip = NETWORK(ip, mask_ip);
+    vector<int> network_ip = network(ip, mask_ip);
    
     cout << "network [";
     for (int i = 0; i < network_ip.size(); i++)
@@ -444,7 +437,7 @@ Source_Data:
 
     //---------------Class mask----------------//
     cout << "subnet class [";
-    cout << CLASS_mask(bit_mask);
+    cout << class_mask(bit_mask);
     cout << "]\n";
 
     //--------maximum number of hosts--------//

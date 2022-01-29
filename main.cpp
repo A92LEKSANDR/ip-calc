@@ -92,7 +92,7 @@ vector<int> network(vector<int> a, vector<int> b)
 }
 
 //------------wildcard------------------------------//
-vector<int> wildcard(vector<int>& wild)
+vector<int> wildcard(vector<int> wild)
 {
     vector<int> result(4);
     for (int i = 0; i < result.size(); i++)
@@ -240,8 +240,8 @@ int main()
 {
     //*******************************variable**************************//
     int bit_mask = 0;
-    vector<int> ip;
-    vector<int> mask_ip;
+    vector<int> ip(4);
+    vector<int> mask_ip(4);
     int oktet_ip_0 = 0, oktet_ip_1 = 0, oktet_ip_2 = 0, oktet_ip_3 = 0;
     /***********************Start***************************************/
 
@@ -312,34 +312,8 @@ int main()
     }
     cout << "] \n";
 
-    cout << "ip_binary [";
-    vector<int> ok0 = dec_to_bit(oktet_ip_0);
-    for (int i = 0; i < ok0.size(); i++)
-    {
-        cout << ok0[i];
-    }
-    cout << '.';
-    vector<int> ok1 = dec_to_bit(oktet_ip_1);
-    for (int i = 0; i < ok1.size(); i++)
-    {
-        cout << ok1[i];
-    }
-    cout << '.';
-    vector<int> ok2 = dec_to_bit(oktet_ip_2);
-    for (int i = 0; i < ok1.size(); i++)
-    {
-        cout << ok1[i];
-    }
-    cout << '.';
-    vector<int> ok3 = dec_to_bit(oktet_ip_3);
-    for (int i = 0; i < ok3.size(); i++)
-    {
-        cout << ok3[i];
-    }
-    cout << "]\n";
-
     //---------------cout<<-mask---------------------------//
-    mask_ip = mask(bit_mask);
+    mask_ip =  mask(bit_mask);
     cout << "network mask = [";
 
     for (int i = 0; i < mask_ip.size(); i++)
@@ -351,45 +325,16 @@ int main()
         }
     }
     cout << "]\n";
- 
-    cout << "mask_binary [";
-    vector<int> m0 = dec_to_bit(mask_ip[0]);
-    vector<int> m1 = dec_to_bit(mask_ip[1]);
-    vector<int> m2 = dec_to_bit(mask_ip[2]);
-    vector<int> m3 = dec_to_bit(mask_ip[3]);
-
-    for (int i = 0; i < m0.size(); i++)
-    {
-        cout << m0[i];
-    }
-    cout << ".";
-    for (int i = 0; i < m1.size(); i++)
-    {
-        cout << m1[i];
-    }
-    cout << ".";
-    for (int i = 0; i < m2.size(); i++)
-    {
-        cout << m2[i];
-    }
-    cout << ".";
-    for (int i = 0; i < m3.size(); i++)
-    {
-        cout << m3[i];
-    }
-    cout << "]\n";
-
-    cout << "bit mask [" << bit_mask <<  "]\n";
     cout << "*************************************************\n";
 
     //----------------wildcard--------------------//
     cout << "wildcard [";
-    vector<int> wildcard = wildcard(mask_ip);
+    vector<int> wild_card = wildcard(mask_ip);
 
-    for (int i = 0; i < wildcard.size(); i++)
+    for (int i = 0; i < wild_card.size(); i++)
     {
-        cout << wildcard[i];
-        if (i != wildcard.size() - 1)
+        cout << wild_card[i];
+        if (i != wild_card.size() - 1)
         {
             cout << '.';
         }
@@ -409,31 +354,7 @@ int main()
     }
     cout << "] \n";
 
-    //------------min/max------------------------//
-    vector<int> minip = MIN_IP(ip,bit_mask);
-    vector<int> maxip = MAX_IP(ip,bit_mask);
-
-    cout << "min ip [";
-    for (int i = 0; i < minip.size(); i++)
-    {
-        cout << minip[i];
-        if (i != minip.size() - 1)
-        {
-            cout << ".";
-        }
-    }
-    cout << "]\n";
   
-    cout << "max ip [";
-    for (int i = 0; i < maxip.size(); i++)
-    {
-        cout << maxip[i];
-        if (i != maxip.size() - 1)
-        {
-            cout << ".";
-        }
-    }
-    cout << "]\n";
 
     //---------------Class mask----------------//
     cout << "subnet class [";

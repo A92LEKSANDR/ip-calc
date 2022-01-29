@@ -21,18 +21,14 @@ vector<int> dec_to_bit(unsigned int a)
 //___________________fund-oktate___________________//
 int bit(int oktet)
 {
-    int result = 0;
     int bit[ ] = {128,192,224,240,248,252,254,255};
 
-    if (oktet >= 0 && oktet <= 8)
+    int i = 0;
+    if (oktet >= 0 && oktet <= 7)
     {
-        int i = 0;
-        if (oktet >= 0 && oktet <= 7)
-        {
-            return bit[oktet];
-        }
+       return bit[oktet];
     }
-        return -1;
+    return -1;
 }
 
 //___________________bit-mask_______________________//
@@ -57,23 +53,23 @@ vector<int> mask(int N)
     }
     else if (a >= 9 && a <= 16)
     {
-        int oktate0 = bit(8);
-        int oktate1 = bit(a-8);
+        int oktate0 = bit(7);
+        int oktate1 = bit(a-7);
         return { oktate0, oktate1, 0, 0 };
     }
     else if (a >= 17 && a <= 24)
     {
-        int oktate0 = bit(8);
+        int oktate0 = bit(7);
         int oktate1 = oktate0;
-        int oktate2 = bit(a - 16);
+        int oktate2 = bit(a - 15);
         return { oktate0, oktate1, oktate2, 0 };
     }
     else if (a >= 25 && a <= 32)
     {
-        int oktate0 = bit(8);
+        int oktate0 = bit(7);
         int oktate1 = oktate0;
         int oktate2 = oktate1;
-        int oktate3 = bit(a - 24);
+        int oktate3 = bit(a - 23);
         return { oktate0, oktate1, oktate2, oktate3 };
     }
 

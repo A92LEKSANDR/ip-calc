@@ -22,97 +22,62 @@ vector<int> dec_to_bit(unsigned int a)
 int bit(int oktet)
 {
     int result = 0;
-    int bit[8][2] =
-    {{1, 128},
-     {2, 192},
-     {3, 224},
-     {4, 240},
-     {5, 248},
-     {6, 252},
-     {7, 254},
-     {8, 255},};
+    int bit[ ] = {128,192,224,240,248,252,254,255};
 
     if (oktet >= 0 && oktet <= 8)
     {
         int i = 0;
-        for (; i < 8; i++)
-            if (bit[i][0] == oktet)break;
-        result = bit[i][1];
+        if (oktet >= 0 && oktet <= 7)
+        {
+            return bit[oktet];
+        }
     }
-    else
-    {
         return -1;
-    }
-
-    return result;
 }
 
 //___________________bit-mask_______________________//
-vector<int> Mask(int N)
+vector<int> mask(int N)
 {
     vector<int> ip;
-    int a = N, b = N % 32, oktate0 = 0, oktate1 = 0, oktate2 = 0, oktate3 = 0;
-
-    switch (b)
+    int a = N, b = N % 32;
+    
+    if (b >= 1 && b <= 8)
     {
-    case 1: N = bit(b); break;//128
-    case 2: N = bit(b); break;//192
-    case 3: N = bit(b); break;//224
-    case 4: N = bit(b); break;//240
-    case 5: N = bit(b); break;//248
-    case 6: N = bit(b); break;//252
-    case 7: N = bit(b); break;//254
-    case 8: N = bit(b); break;//255
+        N = bit(b);
     }
 
     if (N == 0)
     {
-        ip.push_back(0);
-        ip.push_back(0);
-        ip.push_back(0);
-        ip.push_back(0);
+        return { 0, 0, 0, 0 };
     }
     else if (a > 0 && a <= 8)
     {
-        oktate0 = N;
-        ip.push_back(oktate0);
-        ip.push_back(0);
-        ip.push_back(0);
-        ip.push_back(0);
+        int oktate0 = N;
+        return { oktate0, 0, 0, 0 };
     }
-
     else if (a >= 9 && a <= 16)
     {
-        oktate0 = bit(8);
-        oktate1 = bit(a - 8);
-        ip.push_back(oktate0);
-        ip.push_back(oktate1);
-        ip.push_back(0);
-        ip.push_back(0);
+        int oktate0 = bit(8);
+        int oktate1 = bit(a-8);
+        return { oktate0, oktate1, 0, 0 };
     }
     else if (a >= 17 && a <= 24)
     {
-        oktate0 = bit(8);
-        oktate1 = oktate0;
-        oktate2 = bit(a - 16);
-        ip.push_back(oktate0);
-        ip.push_back(oktate0);
-        ip.push_back(oktate2);
-        ip.push_back(0);
+        int oktate0 = bit(8);
+        int oktate1 = oktate0;
+        int oktate2 = bit(a - 16);
+        return { oktate0, oktate1, oktate2, 0 };
     }
     else if (a >= 25 && a <= 32)
     {
-        oktate0 = bit(8);
-        oktate1 = oktate0;
-        oktate2 = oktate1;
-        oktate3 = bit(a - 24);
-        ip.push_back(oktate0);
-        ip.push_back(oktate0);
-        ip.push_back(oktate2);
-        ip.push_back(oktate3);
+        int oktate0 = bit(8);
+        int oktate1 = oktate0;
+        int oktate2 = oktate1;
+        int oktate3 = bit(a - 24);
+        return { oktate0, oktate1, oktate2, oktate3 };
     }
 
-    return ip;
+    return { 0, 0, 0, 0 };
 }
 
 vector<int> NETWORK(vector<int> a, vector<int> b)
@@ -137,7 +102,7 @@ vector<int> WILDCARD(vector<int>& wild)
     return result;
 }
 
-char CLASS_MASK(int bit_mask)
+char CLASS_mask(int bit_mask)
 {
     char clas = '0';
     if (bit_mask >= 0 && bit_mask <= 8)
@@ -174,7 +139,7 @@ vector<int> fund_of_ip(int a, int b, int c, int e)
 vector<int> MIN_IP(vector<int> ip, int bit)
 {
     vector<int> min(4);
-    vector<int> a = Mask(bit);
+    vector<int> a = mask(bit);
     if (bit > 0 && bit <= 8)
     {
         min[0] = ip[0];
@@ -211,7 +176,7 @@ vector<int> MIN_IP(vector<int> ip, int bit)
 vector<int> MAX_IP(vector<int> ip, int bit)
 {
     vector<int> max(4);
-    vector<int> a = Mask(bit);
+    vector<int> a = mask(bit);
     if (bit > 0 && bit < 8)
     {
         max[0] = 255 - a[0] + ip[0];
@@ -381,7 +346,7 @@ Source_Data:
     cout << "]\n";
 
     //---------------cout<<-mask---------------------------//
-    mask_ip = Mask(bit_mask);
+    mask_ip = mask(bit_mask);
     cout << "network mask = [";
 
     for (int i = 0; i < mask_ip.size(); i++)
@@ -479,7 +444,7 @@ Source_Data:
 
     //---------------Class mask----------------//
     cout << "subnet class [";
-    cout << CLASS_MASK(bit_mask);
+    cout << CLASS_mask(bit_mask);
     cout << "]\n";
 
     //--------maximum number of hosts--------//

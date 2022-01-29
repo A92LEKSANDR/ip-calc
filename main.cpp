@@ -3,7 +3,7 @@
 using namespace std;
 
 //---------------DEC-to-Bit------------------------//
-vector<int> decTobit(unsigned int a)
+vector<int> dec_to_bit(unsigned int a)
 {
     vector<int> result(8);
     int bit = 0;
@@ -355,25 +355,25 @@ Source_Data:
     cout << "] \n";
 
     cout << "ip_binary [";
-    vector<int> ok0 = decTobit(oktet_ip_0);
+    vector<int> ok0 = dec_to_bit(oktet_ip_0);
     for (int i = 0; i < ok0.size(); i++)
     {
         cout << ok0[i];
     }
     cout << '.';
-    vector<int> ok1 = decTobit(oktet_ip_1);
+    vector<int> ok1 = dec_to_bit(oktet_ip_1);
     for (int i = 0; i < ok1.size(); i++)
     {
         cout << ok1[i];
     }
     cout << '.';
-    vector<int> ok2 = decTobit(oktet_ip_2);
+    vector<int> ok2 = dec_to_bit(oktet_ip_2);
     for (int i = 0; i < ok1.size(); i++)
     {
         cout << ok1[i];
     }
     cout << '.';
-    vector<int> ok3 = decTobit(oktet_ip_3);
+    vector<int> ok3 = dec_to_bit(oktet_ip_3);
     for (int i = 0; i < ok3.size(); i++)
     {
         cout << ok3[i];
@@ -395,10 +395,10 @@ Source_Data:
     cout << "]\n";
  
     cout << "mask_binary [";
-    vector<int> m0 = decTobit(mask_ip[0]);
-    vector<int> m1 = decTobit(mask_ip[1]);
-    vector<int> m2 = decTobit(mask_ip[2]);
-    vector<int> m3 = decTobit(mask_ip[3]);
+    vector<int> m0 = dec_to_bit(mask_ip[0]);
+    vector<int> m1 = dec_to_bit(mask_ip[1]);
+    vector<int> m2 = dec_to_bit(mask_ip[2]);
+    vector<int> m3 = dec_to_bit(mask_ip[3]);
 
     for (int i = 0; i < m0.size(); i++)
     {

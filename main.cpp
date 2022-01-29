@@ -73,7 +73,7 @@ vector<int> mask(int N)
         return { oktate0, oktate1, oktate2, oktate3 };
     }
 
-    return { 0, 0, 0, 0 };
+    return { 0u, 0, 0, 0 };
 }
 
 vector<int> network(vector<int> a, vector<int> b)

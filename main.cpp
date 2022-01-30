@@ -224,7 +224,6 @@ int main()
     int oktet_ip_0 = 0, oktet_ip_1 = 0, oktet_ip_2 = 0, oktet_ip_3 = 0;
     /***********************Start***************************************/
 
-    ip://ticket goto
     while (true)
     {
         cout << "Press enter ip (for example 192 168 0 1 [0.0.0.0 - 254.254.254.254]): \n";
@@ -242,13 +241,9 @@ int main()
             {
                 break;
             }
-            else
-            {
-                goto ip;
-            }
         }
     }
-    mask_restart://ticket goto
+
     while (true)
     {
         cout << "Press enter mask bit: (0, 1 ... 32): ";
@@ -261,20 +256,11 @@ int main()
         }
         else
         {
-            if ((bit_mask >= 0 && bit_mask <= 32))
-            {
-                goto Source_Data;
-            }
-            else
-            {
-                goto mask_restart;
-            }
+            break;
         }
     }
     
-    Source_Data:
     ip = fund_of_ip(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
-
     cout << "\tSource Data: \n";
     cout << "*************************************************\n";
     cout << "ip addres ";
@@ -309,7 +295,5 @@ int main()
     cout << number_of_hosts;
     
     cout << "\n*************************************************\n";
-
-    goto ip;//restart
     return 0;
 }

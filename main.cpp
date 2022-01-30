@@ -97,27 +97,22 @@ vector<int> wildcard(vector<int> wild)
     }
     return result;
 }
-
+//-----------------class_mask----------------------//
 char class_mask(int bit_mask)
 {
-    char clas = '0';
     if (bit_mask >= 0 && bit_mask <= 8)
     {
-        clas = 'A';
+        return 'A';
     }
     else if (bit_mask >= 9 && bit_mask <= 16)
     {
-        clas = 'B';
+        return 'B';
     }
     else if (bit_mask >= 17 && bit_mask <= 32)
     {
-        clas = 'C';
+        return 'C';
     }
-    else
-    {
-        return -1;
-    }
-    return clas;
+    return -1;
 }
 
 //----------------------IP___________________________//
@@ -125,82 +120,55 @@ vector<int> fund_of_ip(int a, int b, int c, int e)
 {
     return { a, b, c, e };
 }
-
-vector<int> MIN_IP(vector<int> ip, int bit)
+//--------------------min max------------------------//
+vector<int> min_ip(vector<int> ip, int bit)
 {
     vector<int> min(4);
     vector<int> a = mask(bit);
     if (bit > 0 && bit <= 8)
     {
-        min[0] = ip[0];
-        min[1] = 0;
-        min[2] = 0;
-        min[3] = 1;
-
+        return { ip[0], 0, 0, 0 };
     }
     else if (bit >= 9 && bit <= 16)
     {
-        min[0] = ip[0];
-        min[1] = ip[1];
-        min[2] = 0;
-        min[3] = 1;
+        return { ip[0],ip[1],0,0 };
     }
     else if (bit >= 17 && bit <= 24)
     {
-        min[0] = ip[0];
-        min[1] = ip[1];
-        min[2] = ip[2];
-        min[3] = 1;
+        return { ip[0],ip[1],ip[2],1 };
     }
     else if (bit >= 25 && bit <= 32)
     {
-        min[0] = ip[0];
-        min[1] = ip[1];
-        min[2] = ip[2];
-        min[3] = ip[3] + 1;
+        return { ip[0],ip[1],ip[2],ip[3]+1};
     }
-
-    return min;
+    return {0,0,0,0};
 }
 
-vector<int> MAX_IP(vector<int> ip, int bit)
+vector<int> max_ip(vector<int> ip, int bit)
 {
     vector<int> max(4);
     vector<int> a = mask(bit);
     if (bit > 0 && bit < 8)
     {
-        max[0] = 255 - a[0] + ip[0];
-        max[1] = 255;
-        max[2] = 255;
-        max[3] = 254;
-
+        return { 255 - a[0] + ip[0], 255, 255, 254 };
     }
     else if (bit >= 8 && bit < 16)
     {
-        max[0] = ip[0];
-        max[1] = 255 - a[1] + ip[1];
-        max[2] = 255;
-        max[3] = 254;
+        return { ip[0], 255 - a[1] + ip[1], 255, 254};
     }
     else if (bit >= 16 && bit < 24)
     {
-        max[0] = ip[0];
-        max[1] = ip[1];
-        max[2] = 254 - a[2] + ip[2];
-        max[3] = 254;
+        return { ip[0], ip[1], 254 - a[2] + ip[2], 254 };
     }
     else if (bit >= 24 && bit <= 32)
     {
-        max[0] = ip[0];
-        max[1] = ip[1];
-        max[2] = ip[2];
-        max[3] = ip[3];
+        return { ip[0], ip[1], ip[2], ip[3] };
+
         while (max[3] != 254)
         {
             max[3]++;
         }
     }
-
     return max;
 }
 
@@ -232,8 +200,10 @@ int max_host(int a)
     return result;
 }
 
+//-------------print func----------------------//
 void print_func(vector<int>& a)
 {
+    cout << "[";
     for (int i = 0; i < a.size(); i++)
     {
         cout << a[i];
@@ -242,6 +212,7 @@ void print_func(vector<int>& a)
             cout << ".";
         }
     }
+    cout << "]\n";
 }
 
 int main()
@@ -301,63 +272,43 @@ int main()
         }
     }
     
-    /*---------------------Cout IP----------------------------*/
     Source_Data:
     ip = fund_of_ip(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
 
     cout << "\tSource Data: \n";
     cout << "*************************************************\n";
-    cout << "ip addres = [";
+    cout << "ip addres ";
+    print_func(ip);
 
-    for (int i = 0; i < ip.size(); i++)
-    {
-        cout << ip[i];
-        if (i != ip.size() - 1)
-        {
-            cout << ".";
-        }
-    }
-    cout << "] \n";
-
-    //---------------cout<<-mask---------------------------//
     mask_ip =  mask(bit_mask);
-    cout << "network mask = [";
-
-    for (int i = 0; i < mask_ip.size(); i++)
-    {
-        cout << mask_ip[i];
-        if (i != mask_ip.size() - 1)
-        {
-            cout << ".";
-        }
-    }
-    cout << "]\n";
+    cout << "network mask ";
+    print_func(mask_ip);
     cout << "*************************************************\n";
 
-    //----------------wildcard--------------------//
     cout << "wildcard [";
     vector<int> wild_card = wildcard(mask_ip);
     print_func(wild_card);
-    cout << "]\n";
-    //---------------network----------------------//
-    vector<int> network_ip = network(ip, mask_ip);
-   
-    cout << "network [";
+    
+    vector<int> network_ip = network(ip, mask_ip);  
+    cout << "network ";
     print_func(network_ip);
-    cout << "] \n";
 
-    //---------------Class mask----------------//
-    cout << "subnet class [";
+    vector<int> min = min_ip(ip,bit_mask);
+    cout << "min ip";
+    print_func(min);
+
+    vector<int> max = max_ip(ip, bit_mask);
+    cout << "min ip";
+    print_func(max);
+
+    cout << "subnet class ";
     cout << class_mask(bit_mask);
-    cout << "]\n";
 
-    //--------maximum number of hosts--------//
     unsigned long long number_of_hosts = max_host(bit_mask);
-    cout << "number_of_hosts [";
+    cout << "number_of_hosts ";
     cout << number_of_hosts;
-    cout << "]\n";
-    //--------------------------------------//
-    cout << "*************************************************\n";
+    
+    cout << "\n*************************************************\n";
 
     goto ip;//restart
     return 0;

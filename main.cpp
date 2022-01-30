@@ -210,7 +210,7 @@ int max_host(int a)
     int result = 1;
     if (a == 0)
     {
-        result = 0;
+        return 0;
     }
     else if (a > 0 && a < 31)
     {
@@ -218,15 +218,15 @@ int max_host(int a)
         {
             result *= 2;
         }
-        result = result - 2;
+        result -= 2;
     }
     else if (a == 31)
     {
-        result = 2;
+        return 2;
     }
     else if (a == 32)
     {
-        result = 1;
+        return 1;
     }
 
     return result;

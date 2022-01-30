@@ -215,7 +215,15 @@ void print_func(vector<int>& a)
     cout << "]\n";
 }
 
-
+// if all oktate > 0 && <=255 (192.168.1.1)
+int conditions_oktate(int oktate0, int oktate1, int oktate2, int oktate3)
+{
+    if (oktate0 >= 0 && oktate0 <= 255 && oktate1 >= 0 && oktate1 <= 255 && oktate2 >= 0 && oktate2 <= 255 && oktate3 >= 0 && oktate3 <= 255)
+    {
+        return 1;
+    }
+    return -1;
+}
 
 int main()
 {
@@ -230,19 +238,20 @@ int main()
     {
         cout << "Press enter ip (for example 192 168 0 1 [0.0.0.0 - 254.254.254.254]): \n";
         cin >> oktet_ip_0 >> oktet_ip_1 >> oktet_ip_2 >> oktet_ip_3;
-
+        int a = conditions_oktate(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
         if (cin.fail())
         {
             cin.clear();
             cin.ignore();
             cout << "enter error, try again\n";
         }
+        else if(a == 1)
+        {
+            break;
+        }
         else
         {
-            if (oktet_ip_0 >= 0 && oktet_ip_0 <= 255 && oktet_ip_1 >= 0 && oktet_ip_1 <= 255 && oktet_ip_2 >= 0 && oktet_ip_2 <= 255 && oktet_ip_3 >= 0 && oktet_ip_3 <= 255)
-            {
-                break;
-            }
+            return -1;
         }
     }
 
@@ -263,7 +272,7 @@ int main()
     }
     
     ip = fund_of_ip(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
-    cout << "\tSource Data: \n";
+    cout << "\t\tSource Data: \n";
     cout << "*************************************************\n";
     cout << "ip addres ";
     print_func(ip);
@@ -273,20 +282,20 @@ int main()
     print_func(mask_ip);
     cout << "*************************************************\n";
 
-    cout << "wildcard [";
+    cout << "wildcard ";
     vector<int> wild_card = wildcard(mask_ip);print_func(wild_card);
     
     vector<int> network_ip = network(ip, mask_ip);  
     cout << "network ";print_func(network_ip);
 
     vector<int> min = min_ip(ip,bit_mask);
-    cout << "min ip";print_func(min);
+    cout << "min ip ";print_func(min);
 
     vector<int> max = max_ip(ip, bit_mask);
-    cout << "min ip"; print_func(max);
+    cout << "max ip "; print_func(max);
 
     cout << "subnet class ";
-    cout << class_mask(bit_mask);
+    cout << class_mask(bit_mask) << "\n";
 
     unsigned long long number_of_hosts = max_host(bit_mask);
     cout << "number_of_hosts ";

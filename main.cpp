@@ -232,6 +232,18 @@ int max_host(int a)
     return result;
 }
 
+void print_func(vector<int>& a)
+{
+    for (int i = 0; i < a.size(); i++)
+    {
+        cout << a[i];
+        if (i != a.size() - 1)
+        {
+            cout << ".";
+        }
+    }
+}
+
 int main()
 {
     //*******************************variable**************************//
@@ -289,7 +301,6 @@ int main()
         }
     }
     
-    
     /*---------------------Cout IP----------------------------*/
     Source_Data:
     ip = fund_of_ip(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
@@ -326,31 +337,14 @@ int main()
     //----------------wildcard--------------------//
     cout << "wildcard [";
     vector<int> wild_card = wildcard(mask_ip);
-
-    for (int i = 0; i < wild_card.size(); i++)
-    {
-        cout << wild_card[i];
-        if (i != wild_card.size() - 1)
-        {
-            cout << '.';
-        }
-    }
+    print_func(wild_card);
     cout << "]\n";
     //---------------network----------------------//
     vector<int> network_ip = network(ip, mask_ip);
    
     cout << "network [";
-    for (int i = 0; i < network_ip.size(); i++)
-    {
-        cout << network_ip[i];
-        if (i != network_ip.size() - 1)
-        {
-            cout << ".";
-        }
-    }
+    print_func(network_ip);
     cout << "] \n";
-
-  
 
     //---------------Class mask----------------//
     cout << "subnet class [";

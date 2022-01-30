@@ -215,6 +215,8 @@ void print_func(vector<int>& a)
     cout << "]\n";
 }
 
+
+
 int main()
 {
     //*******************************variable**************************//
@@ -272,20 +274,16 @@ int main()
     cout << "*************************************************\n";
 
     cout << "wildcard [";
-    vector<int> wild_card = wildcard(mask_ip);
-    print_func(wild_card);
+    vector<int> wild_card = wildcard(mask_ip);print_func(wild_card);
     
     vector<int> network_ip = network(ip, mask_ip);  
-    cout << "network ";
-    print_func(network_ip);
+    cout << "network ";print_func(network_ip);
 
     vector<int> min = min_ip(ip,bit_mask);
-    cout << "min ip";
-    print_func(min);
+    cout << "min ip";print_func(min);
 
     vector<int> max = max_ip(ip, bit_mask);
-    cout << "min ip";
-    print_func(max);
+    cout << "min ip"; print_func(max);
 
     cout << "subnet class ";
     cout << class_mask(bit_mask);

@@ -2,7 +2,8 @@
 #include <vector>
 using namespace std;
 
-//---------------DEC-to-Bit------------------------//
+//---------------DEC-to-Bit------------------------
+//int to 01010  (192 -> 1100 0000)
 vector<int> dec_to_bit(unsigned int a)
 {
     vector<int> result(8);
@@ -19,6 +20,7 @@ vector<int> dec_to_bit(unsigned int a)
 }
 
 //___________________fund-oktate___________________//
+//select number for oktate in ip and mask
 int bit(int oktet)
 {
     int bit[ ] = {128,192,224,240,248,252,254,255};
@@ -32,6 +34,7 @@ int bit(int oktet)
 }
 
 //___________________bit-mask_______________________//
+//calculate the mask in bit
 vector<int> mask(int N)
 {
     vector<int> ip;
@@ -76,28 +79,33 @@ vector<int> mask(int N)
     return { 0u, 0, 0, 0 };
 }
 
-vector<int> network(vector<int> a, vector<int> b)
+//-------------network---------------------------
+//calculate mask and ip in parameters
+vector<int> network(vector<int> ip, vector<int> mask)
 {
     vector<int> result(4);
     
-    for (int i = 0; i < a.size(); i++)
+    for (int i = 0; i < ip.size(); i++)
     {
-        result[i] = a[i] & b[i];
+        result[i] = ip[i] & mask[i];
     }
     return result;
 }
 
 //------------wildcard------------------------------//
-vector<int> wildcard(vector<int> wild)
+//revers mask (2.0.0.0 - > 0.0.0.2)
+vector<int> wildcard(vector<int> mask)
 {
     vector<int> result(4);
     for (int i = 0; i < result.size(); i++)
     {
-        result[i] =wild[i] ^ 255;
+        result[i] = mask[i] ^ 255;
     }
     return result;
 }
+
 //-----------------class_mask----------------------//
+// easy to understand)
 char class_mask(int bit_mask)
 {
     if (bit_mask >= 0 && bit_mask <= 8)
@@ -116,10 +124,11 @@ char class_mask(int bit_mask)
 }
 
 //----------------------IP___________________________//
-vector<int> fund_of_ip(int a, int b, int c, int e)
+vector<int> fund_of_ip(int oktet0, int oktet1, int oktet2, int oktet3)
 {
-    return { a, b, c, e };
+    return { oktet0, oktet1, oktet2, oktet3 };
 }
+
 //--------------------min max------------------------//
 vector<int> min_ip(vector<int> ip, int bit)
 {
@@ -245,13 +254,9 @@ int main()
             cin.ignore();
             cout << "enter error, try again\n";
         }
-        else if(a == 1)
-        {
-            break;
-        }
         else
         {
-            return -1;
+            break;
         }
     }
 

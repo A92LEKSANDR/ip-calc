@@ -253,6 +253,7 @@ int conditions_bit(int bit_mask)
         return 1;
     }
     return 0;
+}
 
 int main()
 {
@@ -267,7 +268,7 @@ int main()
     {
         cout << "Press enter ip (for example 192 168 0 1 [0.0.0.0 - 254.254.254.254]): \n";
         cin >> oktet_ip_0 >> oktet_ip_1 >> oktet_ip_2 >> oktet_ip_3;
-        int a = conditions_oktate(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
+        int a = conditions_oktate_ip(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
         if (cin.fail())
         {
             cin.clear();
@@ -317,16 +318,20 @@ int main()
     cout << "*************************************************\n";
 
     cout << "wildcard ";
-    vector<int> wild_card = wildcard(mask_ip);print_func(wild_card);
+    vector<int> wild_card = wildcard(mask_ip);
+    print_func(wild_card);
     
     vector<int> network_ip = network(ip, mask_ip);  
-    cout << "network ";print_func(network_ip);
+    cout << "network ";
+    print_func(network_ip);
 
     vector<int> min = min_ip(ip,bit_mask);
-    cout << "min ip ";print_func(min);
+    cout << "min ip ";
+    print_func(min);
 
     vector<int> max = max_ip(ip, bit_mask);
-    cout << "max ip "; print_func(max);
+    cout << "max ip "; 
+    print_func(max);
 
     cout << "subnet class ";
     cout << class_mask(bit_mask) << "\n";

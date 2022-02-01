@@ -2,8 +2,6 @@
 #include <vector>
 using namespace std;
 
-//---------------DEC-to-Bit------------------------
-//int to 01010  (192 -> 1100 0000)
 vector<int> dec_to_bit(unsigned int a)
 {
     vector<int> result(8);
@@ -17,6 +15,23 @@ vector<int> dec_to_bit(unsigned int a)
         count--;
     }
     return result;
+}
+//---------------DEC-to-Bit-for-vector--------------------
+//int to 01010  (192 -> 1100 0000)
+vector<int> print_all_vector_bit(int oktate0, int oktate1, int oktate2, int oktate3)
+{
+    vector<int> print0 = dec_to_bit(oktate0);
+    vector<int> print1 = dec_to_bit(oktate1);
+    vector<int> print2 = dec_to_bit(oktate2);
+    vector<int> print3 = dec_to_bit(oktate3);
+    vector<int> all;
+    for (int i = 0; i < 4; i++)
+    {
+        all = print0;
+    }
+    
+
+    return 
 }
 
 //___________________fund-oktate___________________//

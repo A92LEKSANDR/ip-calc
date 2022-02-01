@@ -281,6 +281,7 @@ int main()
         }
         else
         {
+            cout << "input error oktate! try again\n";
             continue;
         }
     }
@@ -302,6 +303,7 @@ int main()
         }
         else
         {
+            cout << "input error oktate! try again \n";
             continue;
         }
     }

@@ -25,13 +25,24 @@ vector<int> print_all_vector_bit(int oktate0, int oktate1, int oktate2, int okta
     vector<int> print2 = dec_to_bit(oktate2);
     vector<int> print3 = dec_to_bit(oktate3);
     vector<int> all;
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < print0.size(); i++)
     {
-        all = print0;
+        all.push_back(print0[i]);
+    }
+    for (int i = 0; i < print1.size(); i++)
+    {
+        all.push_back(print1[i]);
+    }
+    for (int i = 0; i < print2.size(); i++)
+    {
+        all.push_back(print2[i]);
+    }
+    for (int i = 0; i < print3.size(); i++)
+    {
+        all.push_back(print3[i]);
     }
     
-
-    return 
+    return all;
 }
 
 //___________________fund-oktate___________________//
@@ -358,5 +369,7 @@ int main()
     cout << number_of_hosts;
     
     cout << "\n*************************************************\n";
+    vector<int> a = print_all_vector_bit(192, 168, 1, 1);
+    print_func(a);
     return 0;
 }

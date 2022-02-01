@@ -224,15 +224,35 @@ void print_func(vector<int>& a)
     cout << "]\n";
 }
 
-// if all oktate > 0 && <=255 (192.168.1.1)
-int conditions_oktate(int oktate0, int oktate1, int oktate2, int oktate3)
+// if all oktates > 0 && <=255 (192.168.1.1)
+//contunue programms
+int conditions_oktate_ip(int oktate0, int oktate1, int oktate2, int oktate3)
 {
-    if (oktate0 >= 0 && oktate0 <= 255 && oktate1 >= 0 && oktate1 <= 255 && oktate2 >= 0 && oktate2 <= 255 && oktate3 >= 0 && oktate3 <= 255)
+    if (oktate0 >= 0 && oktate0 <= 255)
+    {
+        if (oktate1 >= 0 && oktate1 <= 255)
+        {
+            if (oktate2 >= 0 && oktate2 <= 255)
+            {
+                if (oktate3 >= 0 && oktate3 <= 255)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+// if bit => 0 && <=32 (0...32)
+//contunue programms
+int conditions_bit(int bit_mask)
+{
+    if (bit_mask >= 0 && bit_mask <= 32)
     {
         return 1;
     }
-    return -1;
-}
+    return 0;
 
 int main()
 {
@@ -254,9 +274,13 @@ int main()
             cin.ignore();
             cout << "enter error, try again\n";
         }
-        else
+        else if (a)
         {
             break;
+        }
+        else
+        {
+            continue;
         }
     }
 
@@ -264,15 +288,20 @@ int main()
     {
         cout << "Press enter mask bit: (0, 1 ... 32): ";
         cin >> bit_mask;
+        int a = conditions_bit(bit_mask);
         if (cin.fail())
         {
             cin.clear();
             cin.ignore();
             cout << "enter error, try again\n";
         }
-        else
+        else if (a)
         {
             break;
+        }
+        else
+        {
+            continue;
         }
     }
     

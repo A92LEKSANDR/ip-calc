@@ -335,14 +335,20 @@ int main()
     }
     
     ip = fund_of_ip(oktet_ip_0, oktet_ip_1, oktet_ip_2, oktet_ip_3);
+    vector<int> ip_bit = print_all_vector_bit(ip[0], ip[1], ip[2], ip[3]);//bit
     cout << "\t\tSource Data: \n";
     cout << "*************************************************\n";
     cout << "ip addres ";
     print_func(ip);
-
+    cout << "bit";
+    print_func(ip_bit);
+    
     mask_ip =  mask(bit_mask);
+    vector<int> mask_ip_bit = print_all_vector_bit(mask_ip[0], mask_ip[1], mask_ip[2], mask_ip[3]);
     cout << "network mask ";
     print_func(mask_ip);
+    cout << "bit";
+    print_func(mask_ip_bit);
     cout << "*************************************************\n";
 
     cout << "wildcard ";
@@ -369,7 +375,5 @@ int main()
     cout << number_of_hosts;
     
     cout << "\n*************************************************\n";
-    vector<int> a = print_all_vector_bit(192, 168, 1, 1);
-    print_func(a);
     return 0;
 }
